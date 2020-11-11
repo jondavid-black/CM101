@@ -43,6 +43,11 @@ test {
     useJUnitPlatform()
 }
 
+jar {
+    // Set the jar name
+    baseName 'cmdemo'
+}
+
 publishing {
     repositories {
         maven {
