@@ -1,0 +1,18 @@
+name: Manually triggered release
+on:
+  workflow_dispatch:
+    inputs:
+      release_semver:
+        description: 'The Semantic Version number of the release'
+        required: true
+      release_notes:
+        description: 'A description of the content of this release'
+        required: true
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "Hello ${{ github.event.inputs.release_semver }}!"
+        echo "- in ${{ github.event.inputs.release_notes }}!"
