@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
-class NumAggTest {
+class NumAggMeanTest {
     @Test void numbersAreAggregated() {
        
-        NumAgg na = new NumAgg();
+        NumAgg na = new NumAggMean();
 
         List<Double> nums = new ArrayList<>();
         double sum = 0.0;
@@ -18,8 +18,9 @@ class NumAggTest {
             nums.add(val);
             sum += val;
         }
+        double mean = sum / 10;
 
         double result =  na.aggregate(nums);
-        assertEquals(sum, result, "Aggregation did not return sum of input values");
+        assertEquals(mean, result, "Aggregation did not return mean of input values");
     }
 }

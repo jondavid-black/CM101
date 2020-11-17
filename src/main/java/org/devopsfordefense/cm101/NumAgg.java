@@ -2,17 +2,7 @@ package org.devopsfordefense.cm101;
 
 import java.util.List;
 
-public class NumAgg {
+public interface NumAgg {
     
-    public NumAgg() {}
-
-    public double aggregate(List<Double> nums) {
-        double retVal = 0;
-
-        for (double val : nums) {
-            retVal += val;
-        }
-
-        return retVal;
-    }
+    public double aggregate(List<Double> nums);
 }
