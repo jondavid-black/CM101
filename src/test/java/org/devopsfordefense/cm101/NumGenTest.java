@@ -11,6 +11,6 @@ class NumGenTest {
         NumGen ng = new NumGen();
         List<Double> nums = ng.generate();
         assertNotNull(nums, "NumGen should not return null");
-        assertTrue(nums.size() > 0, "NumGen should return contents in the number list");
+        assertTrue(nums.size() >= 1000, "NumGen should return at least 1000 values in the number list");
     }
 }
