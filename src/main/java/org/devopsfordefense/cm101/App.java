@@ -6,9 +6,6 @@ package org.devopsfordefense.cm101;
 import java.util.List;
 
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
 
     public static void main(String[] args) {
 
@@ -16,6 +13,8 @@ public class App {
         List<Double> numbers = ng.generate();
         System.out.println("Generated " + numbers.size() + " numbers.");
         
-        System.out.println(new App().getGreeting());
+        NumAgg na = new NumAgg();
+        double aggVal = na.aggregate(numbers);
+        System.out.println("Aggregated value: " + aggVal);
     }
 }

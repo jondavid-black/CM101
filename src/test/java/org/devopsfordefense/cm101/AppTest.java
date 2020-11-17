@@ -4,11 +4,13 @@
 package org.devopsfordefense.cm101;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
+    @Disabled("removed functionallity") 
     @Test void appHasAGreeting() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }
 }
