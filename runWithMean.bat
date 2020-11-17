@@ -1,0 +1,1 @@
+./bin/CM101.bat ./config/config-mean.prop
