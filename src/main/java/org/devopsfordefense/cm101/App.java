@@ -7,13 +7,27 @@ import java.util.List;
 
 public class App {
 
-    public static void main(String[] args) {
+    // Number Aggregation Strategies
+    private static final String AGG_STRATEGY_SUM = "SUM";
+    private static final String AGG_STRATEGY_MEAN = "MEAN";
+
+    // Feature Toggle
+    private static final String AGG_STRATEGY = AGG_STRATEGY_MEAN;
+
+    public static void main(String[] args) throws Exception {
 
         NumGen ng = new NumGen();
         List<Double> numbers = ng.generate();
         System.out.println("Generated " + numbers.size() + " numbers.");
         
-        NumAgg na = new NumAgg();
+        NumAgg na = null;
+        if (AGG_STRATEGY.equals(AGG_STRATEGY_SUM)) {
+            na = new NumAggSum();
+        } else if (AGG_STRATEGY.equals(AGG_STRATEGY_MEAN)) {
+            na = new NumAggMean();
+        } else {
+            throw new Exception("AGG_STRATEGY is invalid.");
+        }
         double aggVal = na.aggregate(numbers);
         System.out.println("Aggregated value: " + aggVal);
     }
