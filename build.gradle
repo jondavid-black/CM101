@@ -22,10 +22,15 @@ repositories {
     jcenter()
 }
 
+configurations {
+    // configuration that holds jars to include in the jar
+    extraLibs
+}
+
 dependencies {
 
     // This is the Apache math dependency used for normal distribution sampling.
-    implementation 'org.apache.commons:commons-math3:3.6.1'
+    extraLibs 'org.apache.commons:commons-math3:3.6.1'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
@@ -35,6 +40,8 @@ dependencies {
 
     // Use JUnit Jupiter Engine for testing.
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
+
+    configurations.compile.extendsFrom(configurations.extraLibs)
 }
 
 application {
@@ -50,6 +57,20 @@ test {
 jar {
     // Set the jar name
     baseName 'cmdemo'
+    manifest {
+        attributes 'Main-Class': 'org.devopsfordefense.cm101.App'
+    }
+    from {
+        configurations.extraLibs.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+distZip {
+    into(project.name) {
+        from '.'
+        include 'config/*'
+        include 'build/libs/*'
+    }
 }
 
 publishing {
