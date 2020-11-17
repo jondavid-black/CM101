@@ -70,6 +70,8 @@ distZip {
         from '.'
         include 'config/*'
         include 'build/libs/*'
+        include 'runWithMean.bat'
+        include 'runWithSum.bat'
     }
 }
 
