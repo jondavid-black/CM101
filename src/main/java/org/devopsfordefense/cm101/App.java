@@ -3,7 +3,9 @@
  */
 package org.devopsfordefense.cm101;
 
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Properties;
 
 public class App {
 
@@ -12,18 +14,21 @@ public class App {
     private static final String AGG_STRATEGY_MEAN = "MEAN";
 
     // Feature Toggle
-    private static final String AGG_STRATEGY = AGG_STRATEGY_MEAN;
+    private static final String AGG_STRATEGY = "AGG_STRATEGY";
 
     public static void main(String[] args) throws Exception {
+        
+        Properties config = new Properties();
+        config.load(new FileInputStream(args[0]));
 
         NumGen ng = new NumGen();
         List<Double> numbers = ng.generate();
         System.out.println("Generated " + numbers.size() + " numbers.");
         
         NumAgg na = null;
-        if (AGG_STRATEGY.equals(AGG_STRATEGY_SUM)) {
+        if (config.getProperty(AGG_STRATEGY).equals(AGG_STRATEGY_SUM)) {
             na = new NumAggSum();
-        } else if (AGG_STRATEGY.equals(AGG_STRATEGY_MEAN)) {
+        } else if (config.getProperty(AGG_STRATEGY).equals(AGG_STRATEGY_MEAN)) {
             na = new NumAggMean();
         } else {
             throw new Exception("AGG_STRATEGY is invalid.");
